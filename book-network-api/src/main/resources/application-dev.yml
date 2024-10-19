@@ -1,12 +1,10 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/book_social_network
-    username: admin
-    password: password
+  docker:
+    compose:
+      file: "../docker-compose.yml"
   jpa:
-    open-in-view: true
-    hibernate:
-      ddl-auto: update
+    generate-ddl: true
+    open-in-view: false
   mail:
     host: localhost
     port: 1025
@@ -26,8 +24,8 @@ spring:
 application:
   security:
     jwt:
-      secret-key: 454156db17ecd4684d62514c07026cad2056a398799728c5b53fdf42d719f3d9
-      expiration: 86400000
+      secret-key: ${JWT_SECRET}
+      expiration: ${JWT_EXPIRATION}
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate_account

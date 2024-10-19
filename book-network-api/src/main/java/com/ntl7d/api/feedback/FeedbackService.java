@@ -2,6 +2,7 @@ package com.ntl7d.api.feedback;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,7 +48,7 @@ public class FeedbackService {
                 return feedbackRepository.save(feedback).getId().toString();
         }
 
-        public PageResponse<FeedbackResponse> findAllFeedbackByBook(String bookId, int page, int size,
+        public PageResponse<FeedbackResponse> findAllFeedbackByBook(UUID bookId, int page, int size,
                         Authentication connectedUser) {
                 Pageable pageable = PageRequest.of(page, size);
 
