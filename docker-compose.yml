@@ -1,0 +1,44 @@
+services:
+  postgres:
+    container_name: postgresql-bsn
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: book_social_network
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - spring-demo
+  pgadmin:
+    container_name: pgadmin-bsn
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    ports:
+      - 5433:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      - spring-demo
+  maildev:
+    container_name: maildev-bsn
+    image: maildev/maildev
+    restart: unless-stopped
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

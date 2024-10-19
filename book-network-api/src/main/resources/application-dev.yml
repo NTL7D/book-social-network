@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book_social_network
+    username: admin
+    password: password
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+  mail:
+    host: localhost
+    port: 1025
+    username: ntl7d
+    password: 123
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+application:
+  security:
+    jwt:
+      secret-key: 454156db17ecd4684d62514c07026cad2056a398799728c5b53fdf42d719f3d9
+      expiration: 86400000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate_account
+  file:
+    upload:
+      photo-output-path: ./uploads
